@@ -12,13 +12,18 @@ import Kingfisher
 class ViewController: BaseViewController {
   private let npsViewModel = NPSViewModel(locator: BaseUseCaseLocatorImpl.defaultLocator)
   @IBOutlet weak var collectionView: UICollectionView!
+  var selectedItem = 0
   override func viewDidLoad() {
     super.viewDidLoad()
     configureUI()
     configureBinding()
   }
   
-  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let viewController = segue.destination as? ListDetailViewController {
+      viewController.selectedItem = self.selectedItem
+    }
+  }
 }
 
 
@@ -26,7 +31,7 @@ extension ViewController {
   
   func configureUI() {
     self.title = "PHOTO ALBUM"
-    navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowleft"), style: .plain, target: navigationController, action: #selector(UINavigationController.popViewController(animated:)))
+   
     collectionView.rx.setDelegate(self).disposed(by: disposeBag)
   }
   
@@ -43,39 +48,14 @@ extension ViewController {
         
     }.disposed(by: disposeBag)
     
-    /*
-     npsViewModel.npsData
-     .asObservable()
-     .bind { selectedScore in
-     if let selectedScore = selectedScore{
-     self.freemiumUsersLabel.text = "\(selectedScore.freemiumUsers)"
-     self.preemiumUsersLabel.text = "\(selectedScore.premiumUsers)"
-     if selectedScore.HighActPerc > 0 {
-     var percentText = "\(Int(selectedScore.HighActPerc))%"
-     if selectedScore.HighActPerc < 1 {
-     percentText = String(format: "%.2f%", selectedScore.HighActPerc)
-     }
-     let activityText = "\(selectedScore.MaxAct) activities"
-     let text = "\(percentText) of the users that answered \(self.indexSelected) in their NPS score saw \(activityText)"
-     let range = (text as NSString).range(of: percentText)
-     let rangeActivity = (text as NSString).range(of: activityText)
-     let attributedString = NSMutableAttributedString(string:text)
-     attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.baseColorB() , range: range)
-     attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.baseColorF() , range: rangeActivity)
-     self.activityLabel.attributedText = attributedString
-     } else {
-     self.activityLabel.text = ""
-     }
-     }
-     }.disposed(by: disposeBag)
-     */
     
     npsViewModel.npsData.asObservable()
       .bind(to: collectionView.rx.items(cellIdentifier: "ListCollectionViewCell", cellType: ListCollectionViewCell.self)) { index, item, cell in
-             cell.nameLabel.text = "\(item.title)"
+        cell.nameLabel.fadeTransition(0.5)
+        cell.nameLabel.text = "\(item.title)"
         if let url = URL(string:  "\(item.thumbnailUrl)"){
           cell.photoImageView.kf.setImage(
-                with: url)
+            with: url)
         }
     }
     .disposed(by: self.disposeBag)
@@ -84,8 +64,8 @@ extension ViewController {
       .rx
       .itemSelected
       .subscribe(onNext:{ indexPath in
-        
-        
+        self.selectedItem = self.npsViewModel.npsData.value[indexPath.row].id
+        self.performSegue(withIdentifier: "showDetail", sender: nil)
       }).disposed(by: disposeBag)
   }
   

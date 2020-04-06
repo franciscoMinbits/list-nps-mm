@@ -11,7 +11,7 @@ import RealmSwift
 class UserRepositoryImpl: UserRepositoryProtocol {
   func loadNPSData(id: Int) -> NPSData? {
      let realm = try! Realm()
-    let result = realm.objects(NPSData.self).sorted(byKeyPath: "id", ascending: true).first
+    let result = realm.objects(NPSData.self).sorted(byKeyPath: "id", ascending: true).filter("id = \(id)").first
     return result
   }
   

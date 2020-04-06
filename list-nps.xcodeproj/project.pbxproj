@@ -51,6 +51,8 @@
 		294E4EA3243BBCD900CBFAE2 /* UIImageViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E4EA2243BBCD900CBFAE2 /* UIImageViewExt.swift */; };
 		294E4EA6243BC56700CBFAE2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 294E4EA5243BC56700CBFAE2 /* Kingfisher */; };
 		294E4EA7243BC56700CBFAE2 /* Kingfisher in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 294E4EA5243BC56700CBFAE2 /* Kingfisher */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		294E4EAA243BC7D400CBFAE2 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E4EA9243BC7D400CBFAE2 /* ListDetailViewController.swift */; };
+		294E4EAC243BD0C500CBFAE2 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E4EAB243BD0C500CBFAE2 /* UIViewExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,8 @@
 		294E4E9E243BB49E00CBFAE2 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		294E4E9F243BB49E00CBFAE2 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		294E4EA2243BBCD900CBFAE2 /* UIImageViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExt.swift; sourceTree = "<group>"; };
+		294E4EA9243BC7D400CBFAE2 /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
+		294E4EAB243BD0C500CBFAE2 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +243,7 @@
 			children = (
 				294E4E9F243BB49E00CBFAE2 /* BaseViewController.swift */,
 				294E4E9E243BB49E00CBFAE2 /* ListCollectionViewCell.swift */,
+				294E4EA9243BC7D400CBFAE2 /* ListDetailViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				294E4E77243BA29300CBFAE2 /* ApplicationExt.swift */,
 				294E4E96243BB1F300CBFAE2 /* ColorExt.swift */,
 				294E4EA2243BBCD900CBFAE2 /* UIImageViewExt.swift */,
+				294E4EAB243BD0C500CBFAE2 /* UIViewExt.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -466,12 +472,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				294E4EAC243BD0C500CBFAE2 /* UIViewExt.swift in Sources */,
 				294E4E9B243BB24000CBFAE2 /* NPSDetailViewModel.swift in Sources */,
 				294E4E95243BA60800CBFAE2 /* NPSDetailUseCaseImpl.swift in Sources */,
 				294E4E90243BA60800CBFAE2 /* BaseUseCaseLocatorProtocol.swift in Sources */,
 				294E4E92243BA60800CBFAE2 /* NPSDetailUseCaseProtocol.swift in Sources */,
 				294E4E91243BA60800CBFAE2 /* BaseUseCaseLocatorImpl.swift in Sources */,
 				294E4E7F243BA4DA00CBFAE2 /* Api.swift in Sources */,
+				294E4EAA243BC7D400CBFAE2 /* ListDetailViewController.swift in Sources */,
 				294E4E78243BA29300CBFAE2 /* ApplicationExt.swift in Sources */,
 				294E4E85243BA51700CBFAE2 /* UserRepositoryImpl.swift in Sources */,
 				294E4EA3243BBCD900CBFAE2 /* UIImageViewExt.swift in Sources */,
