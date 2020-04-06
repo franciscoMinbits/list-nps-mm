@@ -16,7 +16,7 @@ final class NPSViewModel {
   var searchValue = BehaviorRelay<String?>(value: nil)
   var errorMessage: BehaviorRelay<String?> = BehaviorRelay(value: nil)
   var isLoading: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-  private var npsData: BehaviorRelay<[NPSData]> =  BehaviorRelay(value: [])
+  var npsData: BehaviorRelay<[NPSData]> =  BehaviorRelay(value: [])
   
   init( locator: BaseUseCaseLocatorProtocol) {
     self.locator = locator
@@ -35,8 +35,6 @@ final class NPSViewModel {
       }
     }
   }
-  
-  
 }
 
 extension NPSViewModel {
@@ -45,14 +43,6 @@ extension NPSViewModel {
     switch result {
     case .successLoadNPS(let data):
       saveData(data: data)
-      break
-    case .failure:
-      errorMessage.accept("Error el conectar")
-      break
-    case .timeOut:
-      errorMessage.accept("Error el conectar")
-    case .notConnectedToInternet:
-      errorMessage.accept("Error el conectar")
     default:
       errorMessage.accept("Error el conectar")
     }
@@ -60,13 +50,10 @@ extension NPSViewModel {
   
   private func saveData(data: [NPSData]){
     if let npsUseCase = locator.getUseCase(ofType: NPSUseCaseProtocol.self) {
+      
       npsUseCase.saveData(data: data){success, data in
         if success {
-          DispatchQueue.main.sync {
-            self.npsData.accept(data)
-            
-          }
-          
+          self.npsData.accept(data)
         }
       }
     }

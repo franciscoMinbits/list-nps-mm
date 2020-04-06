@@ -17,7 +17,7 @@ class ParseUtils {
         if let lstResponse = json.rawString() {
             //print("JSON: \(lstResponse)")
             if  let searchData = Mapper<NPSData>().mapArray(JSONString: lstResponse) {
-                return searchData
+              return searchData 
             }
         }
         return nil
